@@ -1,0 +1,28 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <block wx:elif="{{!spot}}">
+    <view class="empty">景区不存在</view>
+  </block>
+  <block wx:else>
+    <view class="card">
+      <view style="font-size:40rpx;font-weight:bold;margin-bottom:16rpx;">{{spot.name}}</view>
+      <view style="color:#f5a623;margin-bottom:12rpx;">⭐ {{spot.rating || 5.0}}</view>
+      <view style="font-size:26rpx;color:#888;margin-bottom:8rpx;">📍 {{spot.location}}</view>
+      <view style="font-size:26rpx;color:#888;margin-bottom:8rpx;">🕐 {{spot.openTime}}</view>
+      <view style="font-size:28rpx;color:#555;line-height:1.8;margin-top:16rpx;">{{spot.description}}</view>
+      <view wx:if="{{spot.tips}}" style="font-size:26rpx;color:#999;margin-top:8rpx;">💡 {{spot.tips}}</view>
+    </view>
+
+    <view style="font-size:32rpx;font-weight:bold;margin:20rpx 0;">可选票种</view>
+    <view wx:if="{{tickets.length === 0}}" class="empty">暂无可售票种</view>
+    <view wx:for="{{tickets}}" wx:key="id" class="card">
+      <view class="card-title">{{item.name}}</view>
+      <view wx:if="{{item.description}}" style="font-size:26rpx;color:#888;">{{item.description}}</view>
+      <view style="font-size:24rpx;color:#999;">有效期 {{item.validityDays}} 天</view>
+      <view class="card-extra">
+        <text class="price">¥{{item.price}}</text>
+        <navigator url="/pages/order/order?ticketTypeId={{item.id}}" style="background:#e94560;color:#fff;border-radius:12rpx;padding:12rpx 30rpx;font-size:26rpx;">预订</navigator>
+      </view>
+    </view>
+  </block>
+</view>

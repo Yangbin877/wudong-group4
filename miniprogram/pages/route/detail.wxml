@@ -1,0 +1,32 @@
+<view class="page">
+  <view wx:if="{{loading}}" class="loading">加载中...</view>
+  <block wx:elif="{{!pkg}}"><view class="empty">路线不存在</view></block>
+  <block wx:else>
+    <view class="card">
+      <view style="font-size:40rpx;font-weight:bold;margin-bottom:16rpx;">{{pkg.name}}</view>
+      <view style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16rpx;">
+        <text class="price">¥{{pkg.price}}</text>
+        <text style="font-size:26rpx;color:#888;">{{pkg.days}}天行程</text>
+      </view>
+      <view wx:if="{{pkg.tags && pkg.tags.length}}" style="display:flex;margin-bottom:16rpx;">
+        <text wx:for="{{pkg.tags}}" wx:key="*this" wx:for-item="tag" class="tag">{{tag}}</text>
+      </view>
+      <view style="font-size:28rpx;color:#555;line-height:1.8;">{{pkg.description}}</view>
+      <navigator url="/pages/order/order?routePackageId={{pkg.id}}" class="btn">立即预订</navigator>
+    </view>
+
+    <view wx:if="{{itineraries.length > 0}}">
+      <view style="font-size:32rpx;font-weight:bold;margin:20rpx 0;">行程安排</view>
+      <view wx:for="{{itineraries}}" wx:key="id" class="card">
+        <view style="font-size:30rpx;font-weight:bold;color:#e94560;margin-bottom:12rpx;">
+          第{{item.dayNo}}天：{{item.title}}
+        </view>
+        <view style="font-size:28rpx;color:#555;line-height:1.6;">{{item.description}}</view>
+        <view wx:if="{{item.meals || item.accommodation}}" style="display:flex;gap:30rpx;margin-top:12rpx;font-size:24rpx;color:#888;">
+          <text wx:if="{{item.meals}}">🍽️ {{item.meals}}</text>
+          <text wx:if="{{item.accommodation}}">🏨 {{item.accommodation}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

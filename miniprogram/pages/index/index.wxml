@@ -1,0 +1,18 @@
+<view class="page">
+  <view style="text-align:center;padding:60rpx 0 40rpx;">
+    <text style="font-size:44rpx;font-weight:bold;color:#1a1a2e;">行 · 线路订票</text>
+  </view>
+  <view style="font-size:28rpx;color:#888;text-align:center;margin-bottom:40rpx;">
+    探索苗寨风光，预订景区门票与特色路线
+  </view>
+  <navigator url="/pages/scenic/list" class="card" style="text-align:center;">
+    <view style="font-size:80rpx;margin-bottom:12rpx;">🎫</view>
+    <view class="card-title">景区门票</view>
+    <view class="card-desc">西江千户苗寨、乌东苗寨等热门景区</view>
+  </navigator>
+  <navigator url="/pages/route/list" class="card" style="text-align:center;">
+    <view style="font-size:80rpx;margin-bottom:12rpx;">🗺️</view>
+    <view class="card-title">路线套餐</view>
+    <view class="card-desc">精心设计多日行程，深度体验苗族文化</view>
+  </navigator>
+</view>
